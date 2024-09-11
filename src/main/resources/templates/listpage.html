@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>Tervetuloa</h1>
+    <h1>Books</h1>
     <table>
         <tbody>
             <tr>
@@ -22,9 +22,13 @@
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.isbn}"></td>
                 <td th:text="${book.publicationYear}"></td>
+                <td><a th:href="@{/deleteBook/{id}(id=${book.id})}">Delete</a></td>
             </tr>
         </tbody>
     </table>
+    <a href=/addBook>
+        <button>New Book</button>
+    </a>
 </body>
 
 </html>

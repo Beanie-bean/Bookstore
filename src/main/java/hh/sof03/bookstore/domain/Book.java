@@ -78,9 +78,9 @@ public class Book {
         super();
         this.title = null;
         this.author = null;
-        this.publicationYear = 0;
+        this.publicationYear = null;
         this.isbn = null;
-        this.price = 0;
+        this.price = null;
     }
 
     @Override
