@@ -20,6 +20,6 @@ public class BookController {
     public String getBooks(Model model) {
         List<Book> books = (List<Book>) repository.findAll();
         model.addAttribute("books", books);
-        return "booklist";
+        return "listpage";
     }
 }

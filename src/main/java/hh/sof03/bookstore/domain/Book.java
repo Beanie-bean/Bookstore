@@ -14,7 +14,7 @@ public class Book {
     private String title;
     private String author;
     private Integer publicationYear;
-    private Integer isbn;
+    private String isbn;
     private Integer price;
 
     public String getTitle() {
@@ -41,11 +41,11 @@ public class Book {
         this.publicationYear = publicationYear;
     }
 
-    public Integer getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(Integer isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -65,7 +65,7 @@ public class Book {
         this.id = id;
     }
 
-    public Book(String title, String author, Integer publicationYear, Integer isbn, Integer price) {
+    public Book(String title, String author, Integer publicationYear, String isbn, Integer price) {
         super();
         this.title = title;
         this.author = author;
@@ -79,7 +79,7 @@ public class Book {
         this.title = null;
         this.author = null;
         this.publicationYear = 0;
-        this.isbn = 0;
+        this.isbn = null;
         this.price = 0;
     }
 
