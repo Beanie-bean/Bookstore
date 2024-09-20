@@ -16,11 +16,11 @@ import hh.sof03.bookstore.domain.bookRepository;
 public class BookController {
 
     @Autowired
-    private bookRepository repository;
+    private bookRepository brepository;
 
     @RequestMapping(value = "/index")
     public String getBooks(Model model) {
-        List<Book> books = (List<Book>) repository.findAll();
+        List<Book> books = (List<Book>) brepository.findAll();
         model.addAttribute("books", books);
         return "listpage";
     }
@@ -33,19 +33,19 @@ public class BookController {
 
     @RequestMapping(value = "/saveBook", method = RequestMethod.POST) 
     public String saveBook(Book book) {
-        repository.save(book);
+        brepository.save(book);
         return "redirect:index";
     }
 
     @RequestMapping(value = "/deleteBook/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long id, Model model ) {
-        repository.deleteById(id);
+        brepository.deleteById(id);
         return "redirect:/index";
     }
 
     @RequestMapping(value = "/editBook/{id}")
     public String editBook(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("book", repository.findById(id));
+        model.addAttribute("book", brepository.findById(id));
         return "editbook";
     }
 }

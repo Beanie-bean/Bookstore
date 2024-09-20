@@ -24,7 +24,7 @@
                 <td th:text="${book.isbn}"></td>
                 <td th:text="${book.publicationYear}"></td>
                 <td><a th:href="@{/deleteBook/{id}(id=${book.id})}">
-                    <button class="btn btn-danger">New Book</button>
+                    <button class="btn btn-danger">Delete Book</button>
                 </a></td>
                 <td><a th:href="@{/editBook/{id}(id=${book.id})}">
                     <button>Edit</button>
