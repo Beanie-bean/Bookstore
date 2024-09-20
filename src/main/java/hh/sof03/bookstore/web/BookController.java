@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import hh.sof03.bookstore.domain.Book;
 import hh.sof03.bookstore.domain.bookRepository;
+import hh.sof03.bookstore.domain.categoryRepository;
 
 @Controller
 public class BookController {
 
     @Autowired
     private bookRepository brepository;
+
+    @Autowired
+    private categoryRepository crepository;
 
     @RequestMapping(value = "/index")
     public String getBooks(Model model) {
@@ -28,6 +32,7 @@ public class BookController {
     @RequestMapping(value = "/addBook", method = RequestMethod.GET)
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
+        model.addAttribute("categories", crepository.findAll());
         return "addbook";
     }
 

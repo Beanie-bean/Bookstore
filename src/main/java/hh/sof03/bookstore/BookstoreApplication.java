@@ -24,13 +24,11 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner demo(bookRepository brepository, categoryRepository crepository ) {
 		return (args) -> {
-			Category category1 = new Category("Horror");
-			crepository.save(category1);
-			Category category2 = new Category("Romance");
-			crepository.save(category2);
+			crepository.save(new Category("Horror"));
+			crepository.save(new Category("Romance"));
 
-			brepository.save(new Book("The Fault in Our Stars", "John Green", 2012, "12345-12", 20, category2));
-			brepository.save(new Book("The Shining", "Stephen King", 1977, "54321-21", 20, category1));
+			brepository.save(new Book("The Fault in Our Stars", "John Green", 2012, "12345-12", 20, crepository.findByName("Romance").get(0)));
+			brepository.save(new Book("The Shining", "Stephen King", 1977, "54321-21", 20, crepository.findByName("Horror").get(0)));
 		
 			for (Book book : brepository.findAll()) {
 				log.info(book.toString());
