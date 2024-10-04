@@ -7,7 +7,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import hh.sof03.bookstore.domain.AppUser;
+import hh.sof03.bookstore.domain.AppUserRepository;
 import hh.sof03.bookstore.domain.Book;
 import hh.sof03.bookstore.domain.bookRepository;
 import hh.sof03.bookstore.domain.Category;
@@ -22,8 +25,17 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(bookRepository brepository, categoryRepository crepository ) {
+	public CommandLineRunner demo(bookRepository brepository, categoryRepository crepository, AppUserRepository appUserRepository) {
 		return (args) -> {
+			AppUser user1 = new AppUser("user", "$2y$10$LslGQIEDwvyGBWvP4liXjuCDngxUek2Ptg4sEmwyRDAHuGMZL7QnO", "user1@email.com", "USER");
+			AppUser user2 = new AppUser("admin", "$2y$10$myDquyq7/czMGw9F9gjJ6.yLnBux8eQzDwYna7FzfTQlW4XySV1mG", "user2@email.com", "ADMIN");
+
+			user1.setPasswordHash(new BCryptPasswordEncoder().encode(user1.getPasswordHash()));
+			user2.setPasswordHash(new BCryptPasswordEncoder().encode(user2.getPasswordHash()));
+
+			appUserRepository.save(user1);
+			appUserRepository.save(user2);
+
 			crepository.save(new Category("Horror"));
 			crepository.save(new Category("Romance"));
 
