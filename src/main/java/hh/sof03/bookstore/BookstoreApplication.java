@@ -30,9 +30,6 @@ public class BookstoreApplication {
 			AppUser user1 = new AppUser("user", "$2y$10$LslGQIEDwvyGBWvP4liXjuCDngxUek2Ptg4sEmwyRDAHuGMZL7QnO", "user1@email.com", "USER");
 			AppUser user2 = new AppUser("admin", "$2y$10$myDquyq7/czMGw9F9gjJ6.yLnBux8eQzDwYna7FzfTQlW4XySV1mG", "user2@email.com", "ADMIN");
 
-			user1.setPasswordHash(new BCryptPasswordEncoder().encode(user1.getPasswordHash()));
-			user2.setPasswordHash(new BCryptPasswordEncoder().encode(user2.getPasswordHash()));
-
 			appUserRepository.save(user1);
 			appUserRepository.save(user2);
 
