@@ -25,7 +25,6 @@ public class BookRepositoryTests {
     @Autowired
 	private categoryRepository categoryRepository;
 
-
     @Test
     public void findByBookTitle() {
         List<Book> books = bookRepository.findByTitle("The Shining");
@@ -36,8 +35,16 @@ public class BookRepositoryTests {
 
     @Test
     public void addNewBook() {
-        Book book = new Book("The Hobbit or There and Back Again","J. R. R. Tolkien" , 1937, "87654-21", 40, new Category("Fantasy"));
-        bookRepository.save(book);
+        Book book = new Book("The Hobbit or There and Back Again", "J. R. R. Tolkien", 1937, "87654-21", 40, new Category("Fantasy"));
+        book = bookRepository.save(book);
         assertThat(book.getId()).isNotNull();
+    }
+
+    @Test
+    public void deleteBook() {
+        Book book = new Book("The Hobbit or There and Back Again", "J. R. R. Tolkien", 1937, "87654-21", 40, new Category("Fantasy"));
+        book = bookRepository.save(book);
+        bookRepository.deleteById(book.getId());
+        assertThat(bookRepository.findById(book.getId())).isEmpty();     
     }
 }
